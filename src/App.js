@@ -24,7 +24,8 @@ function App() {
       ].join(','),
     }
   });
-
+   
+  console.log('app is rendering');
   return (
     <GlobalProvider>
       <ThemeProvider theme={myTheme}>

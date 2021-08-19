@@ -5,8 +5,17 @@ import { Link } from 'react-router-dom'
 import {
     useBodyScrollLock,
 } from "@weahead/react-customizable-modal";
+import { makeStyles } from '@material-ui/core/styles';
 
+
+const useStyles = makeStyles((theme) => ({
+    mobileMenuItems: {
+        fontSize: '2.5rem',
+        fontWeight: theme.typography.fontWeightLight
+    }
+}))
 const NavigationOverlay = ({ menuOpen: [menuOpen, setMenuOpen], menuItems, handleLogin }) => {
+    const classes = useStyles();
     useBodyScrollLock();
     const nav = useRef()
     useEffect(() => {
@@ -20,6 +29,7 @@ const NavigationOverlay = ({ menuOpen: [menuOpen, setMenuOpen], menuItems, handl
     const closeMenu = () => {
         setMenuOpen(false)
     }
+
     return (
         <Box className="overlay" ref={nav} >
             <Box>
@@ -30,17 +40,19 @@ const NavigationOverlay = ({ menuOpen: [menuOpen, setMenuOpen], menuItems, handl
                                 const { item } = menu
                                 const url = item.replace(/ /g, "-")
                                 return (
-                                    <Link to={`/${url}`} key={url} onClick={closeMenu}>
-                                        <Typography variant="h3" style={{ textTransform: 'capitalize' }} className='h2'>
-                                            {item}
-                                        </Typography>
-                                    </Link>
+                                    <Box mb={3}>
+                                        <Link to={`/${url}`} key={url} onClick={closeMenu}>
+                                            <Typography className={classes.mobileMenuItems} variant="h3" style={{ textTransform: 'capitalize' }} >
+                                                {item}
+                                            </Typography>
+                                        </Link>
+                                    </Box>
                                 )
                             })
                         }
                     </Box>
                     <Box>
-                        <Typography variant="h3" onClick={handleLogin} className='login' >
+                        <Typography className={classes.mobileMenuItems} variant="h3" onClick={handleLogin}  >
                             Login
                         </Typography>
                     </Box>

@@ -26,7 +26,7 @@ const Dill = () => {
                         </Typography>
                     </Box>
                     <Box mt={4}>
-                        <MyButton buttonColor="lightcoral" textColor="textSecondary" text="Subscribe Me" />
+                        <MyButton buttonColor="lightcoral" textColor="textSecondary" text="Subscribe Me" width="230px" />
                     </Box>
                     <Box mt={8}>
                         <Grid container spacing={isMedium ? 2 : 5}>

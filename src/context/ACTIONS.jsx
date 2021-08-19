@@ -1,4 +1,5 @@
 export const ACTIONS = {
     DELETE__ITEM: 'DELETE_ITEM',
-    ADD__ITEM: 'ADD_ITEM'
+    ADD__ITEM: 'ADD_ITEM',
+    UPDATE__ITEM: 'UPDATE__ITEM'
 }

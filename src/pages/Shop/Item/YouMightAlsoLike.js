@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 
 const YouMightAlsoLike = ({ randomItems }) => {
     const classes = useStyles()
-
+    console.log('you might also like is rendering');
     return (
         <>
             <Box mb={2}>

@@ -1,9 +1,15 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import { Box, Typography } from '@material-ui/core';
 import { MyButton, MySimpleButton } from '../../../../components/Button'
 import { useForm } from "react-hook-form";
 import { GlobalState } from '../../../../context/GlobalState'
+
+import Alert from '@material-ui/lab/Alert';
+import IconButton from '@material-ui/core/IconButton';
+import Collapse from '@material-ui/core/Collapse';
+import Button from '@material-ui/core/Button';
+import CloseIcon from '@material-ui/icons/Close';
 
 const useStyles = makeStyles((theme) => ({
     description: {
@@ -51,14 +57,52 @@ const Details = ({ pickle }) => {
     const classes = useStyles()
     const [quantity, setQuantity] = useState(1)
     const [signup, setSignup] = useState(false)
+    const [addToCart, setAddToCart] = useState(false)
+    const [open, setOpen] = useState(false)
     const { handleSubmit, register } = useForm();
-    const { add__item } = useContext(GlobalState)
+    const { add__item, items: { items } } = useContext(GlobalState)
+    console.log('details component is rendering and here quantity value is', quantity);
+
+    // to reset quantity and open states to default on pickle change
+    useEffect(() => {
+        setQuantity(1)
+        setOpen(false)
+    }, [pickle])
 
     const onSubmit = async () => {
         console.log("form is submitting");
         setSignup(true)
     }
 
+
+    const quantityDemand = (value, availableItems) => {
+        console.log('quantity demand ');
+        console.log('user is demanding for', value);
+        console.log('available items are', availableItems);
+        if (value > availableItems) {
+            setOpen(true)
+        }
+        else {
+            setQuantity(value)
+        }
+    }
+    const itemToAdd = {
+        id: pickle.id,
+        title: pickle.title,
+        price: pickle.price,
+        image: pickle.image,
+        quantity: quantity,
+        availibility: pickle.availibility,
+        added: true
+    }
+
+    // checking if item has been added before so disan;e the add to cart button
+    const itemAlreadyAdded = items.filter(item => item.id === itemToAdd.id).length < 1 ? false : true
+
+    const handleAddToCart = (item) => {
+        add__item(item)
+        setAddToCart(true)
+    }
     return (
         <Box >
             <Box >
@@ -116,10 +160,31 @@ const Details = ({ pickle }) => {
                         <Typography variant="body1">
                             Quantity:
                         </Typography>
-                        <input type="number" className={classes.quantity} value={quantity} onChange={(e) => setQuantity(e.target.value)} min={1} />
+                        <input type="number" className={classes.quantity} value={quantity} onChange={(e) => quantityDemand(e.target.value, pickle.availibility)} min={1} />
+                        <Box mt={2}>
+                            <Collapse in={open}>
+                                <Alert
+                                    severity="warning"
+                                    action={
+                                        <IconButton
+                                            aria-label="close"
+                                            color="inherit"
+                                            size="small"
+                                            onClick={() => {
+                                                setOpen(false);
+                                            }}
+                                        >
+                                            <CloseIcon fontSize="inherit" />
+                                        </IconButton>
+                                    }
+                                >
+                                    Only {pickle.availibility} items are available
+                                </Alert>
+                            </Collapse>
+                        </Box>
                     </Box>
                     <Box>
-                        <MyButton buttonColor="rgb(223,124,109)" textColor="textSecondary" text="Add To Cart" display="block" padding="20px 40px" onClick={() => add__item} />
+                        <MyButton buttonColor="rgb(223,124,109)" textColor="textSecondary" text={itemAlreadyAdded ? "Added" : "Add To Cart"} display="block" cursor={itemAlreadyAdded ? "not-allowed" : 'pointer'} opacity={itemAlreadyAdded && ".75"} padding="20px 40px" width="100%" onClick={() => handleAddToCart(itemToAdd)} disabled={itemAlreadyAdded ? true : false} />
                     </Box>
                 </Box>
             }

@@ -5,6 +5,8 @@ import { MyButton } from '../../components/Button'
 import Header from '../../components/Header/Header'
 import HeroBg from '../../images/hero-bg.jpg'
 import { GlobalState } from '../../context/GlobalState'
+import { Link } from "react-router-dom"
+
 
 const useStyles = makeStyles((theme) => ({
     heroContainer: {
@@ -26,6 +28,13 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
         minHeight: '85vh',
     },
+    heroTitle: {
+        fontSize: '4rem',
+        fontWeight: [theme.typography.fontWeightBold],
+        [theme.breakpoints.down('sm')]: {
+            fontSize: '3rem'
+        }
+    },
     header: {
         color: '#fff'
     }
@@ -43,12 +52,14 @@ const Hero = () => {
                     <Container maxWidth="lg" className={classes.hero} >
                         <Box >
                             <Box mb={4}>
-                                <Typography variant="h2" color="textSecondary" style={{ fontWeight: 700 }} align="center">
+                                <Typography className={classes.heroTitle} variant="h2" color="textSecondary" align="center">
                                     Pickle Perfection
                                 </Typography>
                             </Box>
                             <Box>
-                                <MyButton buttonColor="#ffffff" textColor="primary" text="Shop Now" link="/shop" />
+                                <Link to='/shop'>
+                                    <MyButton buttonColor="#ffffff" textColor="primary" text="Shop Now" />
+                                </Link>
                             </Box>
                         </Box>
                     </Container>

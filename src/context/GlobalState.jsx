@@ -15,13 +15,26 @@ export const GlobalProvider = ({ children }) => {
         dispatch({ type: ACTIONS.ADD__ITEM, payload: item })
     }
 
+    const delete__item = (item) => {
+        dispatch({ type: ACTIONS.DELETE__ITEM, payload: item })
+    }
+
+    // to update the quantity of items on cart page
+    const update__item = (item) => {
+        dispatch({ type: ACTIONS.UPDATE__ITEM, payload: item })
+    }
+    
+    console.log('state', state);
+
     return (
         <GlobalState.Provider value={{
             modal: [showModal, setShowModal],
             modalContent: [modalContent, setModalContent],
             menuOpen: [menuOpen, setMenuOpen],
             items: state,
-            add__item
+            add__item,
+            delete__item,
+            update__item
             // color: [color,setColor]
         }}>
             {children}

@@ -20,6 +20,7 @@ import item9s from '../../images/item9s.jpg'
 
 export const Api = [
     {
+        id: 1,
         title: 'beni shoga',
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas mattis orci cursus, lacinia nisl ac, tempor lorem. Duis in vestibulum felis, id molestie sapien. Nunc vel felis non massa pretium vehicula ut vitae diam. Aenean lobortis fringilla mollis. Nullam venenatis velit vitae magna congue vulputate. Nunc sagittis purus ligula, a pulvinar magna venenatis nec.",
         price: 10,
@@ -31,6 +32,7 @@ export const Api = [
         soldOut: false,
     },
     {
+        id: 2,
         title: 'do chua',
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas mattis orci cursus, lacinia nisl ac, tempor lorem. Duis in vestibulum felis, id molestie sapien. Nunc vel felis non massa pretium vehicula ut vitae diam. Aenean lobortis fringilla mollis. Nullam venenatis velit vitae magna congue vulputate. Nunc sagittis purus ligula, a pulvinar magna venenatis nec.",
         price: 10,
@@ -42,6 +44,7 @@ export const Api = [
         soldOut: false,
     },
     {
+        id: 3,
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas mattis orci cursus, lacinia nisl ac, tempor lorem. Duis in vestibulum felis, id molestie sapien. Nunc vel felis non massa pretium vehicula ut vitae diam. Aenean lobortis fringilla mollis. Nullam venenatis velit vitae magna congue vulputate. Nunc sagittis purus ligula, a pulvinar magna venenatis nec.",
         title: 'lemons',
         price: 10,
@@ -53,6 +56,7 @@ export const Api = [
         soldOut: false,
     },
     {
+        id: 4,
         title: 'sauerkraut',
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas mattis orci cursus, lacinia nisl ac, tempor lorem. Duis in vestibulum felis, id molestie sapien. Nunc vel felis non massa pretium vehicula ut vitae diam. Aenean lobortis fringilla mollis. Nullam venenatis velit vitae magna congue vulputate. Nunc sagittis purus ligula, a pulvinar magna venenatis nec.",
         price: 10,
@@ -64,6 +68,7 @@ export const Api = [
         soldOut: false,
     },
     {
+        id: 5,
         title: 'caperberries',
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas mattis orci cursus, lacinia nisl ac, tempor lorem. Duis in vestibulum felis, id molestie sapien. Nunc vel felis non massa pretium vehicula ut vitae diam. Aenean lobortis fringilla mollis. Nullam venenatis velit vitae magna congue vulputate. Nunc sagittis purus ligula, a pulvinar magna venenatis nec.",
         price: 10,
@@ -75,6 +80,7 @@ export const Api = [
         soldOut: false,
     },
     {
+        id: 6,
         title: 'beets',
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas mattis orci cursus, lacinia nisl ac, tempor lorem. Duis in vestibulum felis, id molestie sapien. Nunc vel felis non massa pretium vehicula ut vitae diam. Aenean lobortis fringilla mollis. Nullam venenatis velit vitae magna congue vulputate. Nunc sagittis purus ligula, a pulvinar magna venenatis nec.",
         price: 10,
@@ -86,6 +92,7 @@ export const Api = [
         soldOut: false,
     },
     {
+        id: 7,
         title: 'kimchi',
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas mattis orci cursus, lacinia nisl ac, tempor lorem. Duis in vestibulum felis, id molestie sapien. Nunc vel felis non massa pretium vehicula ut vitae diam. Aenean lobortis fringilla mollis. Nullam venenatis velit vitae magna congue vulputate. Nunc sagittis purus ligula, a pulvinar magna venenatis nec.",
         price: 10,
@@ -97,6 +104,7 @@ export const Api = [
         soldOut: true,
     },
     {
+        id: 8,
         title: 'spring mix',
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas mattis orci cursus, lacinia nisl ac, tempor lorem. Duis in vestibulum felis, id molestie sapien. Nunc vel felis non massa pretium vehicula ut vitae diam. Aenean lobortis fringilla mollis. Nullam venenatis velit vitae magna congue vulputate. Nunc sagittis purus ligula, a pulvinar magna venenatis nec.",
         price: 12,
@@ -108,6 +116,7 @@ export const Api = [
         soldOut: false,
     },
     {
+        id: 9,
         title: 'dill pickles',
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas mattis orci cursus, lacinia nisl ac, tempor lorem. Duis in vestibulum felis, id molestie sapien. Nunc vel felis non massa pretium vehicula ut vitae diam. Aenean lobortis fringilla mollis. Nullam venenatis velit vitae magna congue vulputate. Nunc sagittis purus ligula, a pulvinar magna venenatis nec.",
         price: 30,

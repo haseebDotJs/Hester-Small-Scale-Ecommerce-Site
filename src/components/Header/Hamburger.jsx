@@ -18,7 +18,7 @@ const Hamburger = ({ menuOpen: [menuOpen, setMenuOpen], color }) => {
         menuBurger.current.classList.remove('big-sticks')
         setMenuOpen(false)
         }
-    }, [menuOpen])
+    }, [menuOpen,setMenuOpen])
     const handleHamburger = () => {
         if (!menuOpen) {
             menuBtn.current.classList.add('open');
@@ -32,8 +32,8 @@ const Hamburger = ({ menuOpen: [menuOpen, setMenuOpen], color }) => {
     }
     console.log('color', color);
     return (
-        <Box className="menu-btn open" ref={menuBtn} onClick={handleHamburger} >
-            <Box className="menu-btn__burger big-sticks" ref={menuBurger} style={{ backgroundColor: menuOpen ? '#000' : color ? color.color : "#000" }} />
+        <Box className="menu-btn" ref={menuBtn} onClick={handleHamburger} >
+            <Box className="menu-btn__burger" ref={menuBurger} style={{ backgroundColor: menuOpen ? '#000' : color ? color.color : "#000" }} />
             {/* <Box className="menu-btn__burger menu-btn__burger1" /> */}
         </Box>
     )

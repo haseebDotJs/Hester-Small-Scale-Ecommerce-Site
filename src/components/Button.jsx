@@ -10,7 +10,6 @@ const useStyles = makeStyles((theme) => ({
         textAlign: 'center',
         boxShadow: 'none',
         margin: 'auto',
-        cursor: "pointer",
         borderRadius: 0,
         "&:hover": {
             opacity: .85,
@@ -19,23 +18,21 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export const MyButton = ({ type, text, link, buttonColor, textColor, display, justifyContent, fontWeight,padding,onClick }) => {
+export const MyButton = ({ type, text, buttonColor, textColor, display, justifyContent, fontWeight, padding, onClick, width, opacity, cursor, disabled }) => {
     const classes = useStyles(buttonColor)
     return (
         <Box style={{ display: display ? display : 'flex', justifyContent: justifyContent ? justifyContent : "center" }}>
-            <Link to={link ? link : ""}>
-                <button type={type ? type : "button"} style={{ backgroundColor: buttonColor, width: "100%" ,padding: padding ? padding : "25px 40px" }} className={classes.shopNowButton} onClick={onClick && onClick} >
-                    <Typography variant="body1" color={textColor} style={{ fontWeight: fontWeight ? fontWeight : 600 }}>
-                        {text}
-                    </Typography>
-                </button>
-            </Link>
+            <button type={type ? type : "button"} style={{ backgroundColor: buttonColor, width: "100%", maxWidth: width ? width : "180px", padding: padding ? padding : "25px 40px", opacity: opacity ? opacity : 1, cursor: cursor ? cursor : 'pointer' }} className={classes.shopNowButton} onClick={onClick && onClick} disabled={disabled && true} >
+                <Typography variant="body1" color={textColor} style={{ fontWeight: fontWeight ? fontWeight : 600 }}>
+                    {text}
+                </Typography>
+            </button>
         </Box>
 
     )
 
 }
-export const MySimpleButton = ({ type,  text,buttonColor, textColor, display, justifyContent, fontWeight, padding }) => {
+export const MySimpleButton = ({ type, text, buttonColor, textColor, display, justifyContent, fontWeight, padding }) => {
     const classes = useStyles(buttonColor)
     return (
         <Box style={{ display: display ? display : 'flex', justifyContent: justifyContent ? justifyContent : "center" }}>

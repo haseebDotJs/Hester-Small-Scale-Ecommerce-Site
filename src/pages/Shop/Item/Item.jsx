@@ -17,11 +17,11 @@ const Item = () => {
     const pickle = Api.find((pickle) => pickle.title === originalTitle)
 
     // removing current item and randomly picking 5 items to put in (you might also like)
-    const randomItems = shuffle(Api.filter(pickle => pickle.title !== originalTitle)).slice(0, 5)
-
+    const randomItems = shuffle(Api.filter(pickle => pickle.title !== originalTitle).slice(0, 5))
+    console.log('item is rendering');
     return (
         <Box>
-            <Header />
+            <Header /> 
             <PaddedBox>
                 <Container maxWidth="lg">
                     <Box>
@@ -30,7 +30,6 @@ const Item = () => {
                     <Box mt={{ xs: 5, md: 10 }} mb={{ xs: 8, md: 12 }}>
                         <YouMightAlsoLike randomItems={randomItems} />
                     </Box>
-
                 </Container>
             </PaddedBox>
             <Footer />

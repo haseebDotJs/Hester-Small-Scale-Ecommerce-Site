@@ -4,6 +4,7 @@ import { MyButton } from '../../components/Button'
 import pickle1 from '../../images/pickle1.jpeg'
 import pickle2 from '../../images/pickle2.jpeg'
 import pickle3 from '../../images/pickle3.jpeg'
+import { Link } from 'react-router-dom'
 
 
 const Ingredients = () => {
@@ -41,7 +42,9 @@ const Ingredients = () => {
                         </Grid>
                     </Box>
                     <Box>
-                        <MyButton buttonColor="lightcoral" textColor="textSecondary" text="Shop Now" link="/shop" />
+                        <Link to="/shop">
+                            <MyButton buttonColor="lightcoral" textColor="textSecondary" text="Shop Now" />
+                        </Link>
                     </Box>
                 </Box>
             </Container>

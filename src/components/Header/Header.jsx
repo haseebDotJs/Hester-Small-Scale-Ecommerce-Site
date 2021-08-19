@@ -80,11 +80,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Header = ({ color }) => {
+    console.log('header is rendering');
     const classes = useStyles(color);
     const initialState = useMemo(() => ({ shop: false, ourStory: false, blog: false }), [])
     const [active, setActive] = useState(initialState)
     const { pathname } = useLocation()
-    const { modal: [showModal, setShowModal], modalContent: [, setModalContent], menuOpen: [menuOpen, setMenuOpen] } = useContext(GlobalState)
+    const { modal: [showModal, setShowModal], modalContent: [, setModalContent], menuOpen: [menuOpen, setMenuOpen], items: { items } } = useContext(GlobalState)
     const path = pathname.replace(/\//, "")
 
     const theme = useTheme();
@@ -92,6 +93,10 @@ const Header = ({ color }) => {
 
     const menuItems = [{ item: "shop", active: active.shop }, { item: "our story", active: active.ourStory }, { item: "blog", active: active.blog }]
 
+    // calculating total quantity of items
+    const totalQuantity = items.reduce((acc, item) => {
+        return (acc + +item.quantity)
+    }, 0)
     // const box1 = useRef()
     // const box3 = useRef()
 
@@ -113,7 +118,7 @@ const Header = ({ color }) => {
             setMenuOpen(false)
         }
 
-    }, [path, matches])
+    }, [path, matches, setMenuOpen])
 
     const handleLogin = () => {
         setShowModal(!showModal)
@@ -172,7 +177,7 @@ const Header = ({ color }) => {
                                         </Typography>
                                         <Box ml={3} className={classes.cartIcon}>
                                             <Link to="/cart">
-                                                <Badge badgeContent={4}  >
+                                                <Badge badgeContent={totalQuantity ? totalQuantity : '0'}  >
                                                     <ShoppingCartOutlinedIcon />
                                                 </Badge>
                                             </Link>
