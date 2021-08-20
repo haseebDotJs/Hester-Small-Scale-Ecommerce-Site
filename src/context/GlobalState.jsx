@@ -9,7 +9,7 @@ export const GlobalProvider = ({ children }) => {
     const [showModal, setShowModal] = useState(false)
     const [modalContent, setModalContent] = useState(<></>)
     const [menuOpen, setMenuOpen] = useState(false)
-    // const [color,setColor] = useState('#000')
+    const [color,setColor] = useState('#000')
 
     const add__item = (item) => {
         dispatch({ type: ACTIONS.ADD__ITEM, payload: item })
@@ -28,6 +28,7 @@ export const GlobalProvider = ({ children }) => {
 
     return (
         <GlobalState.Provider value={{
+            color: [color,setColor],
             modal: [showModal, setShowModal],
             modalContent: [modalContent, setModalContent],
             menuOpen: [menuOpen, setMenuOpen],
@@ -35,7 +36,6 @@ export const GlobalProvider = ({ children }) => {
             add__item,
             delete__item,
             update__item
-            // color: [color,setColor]
         }}>
             {children}
         </GlobalState.Provider>

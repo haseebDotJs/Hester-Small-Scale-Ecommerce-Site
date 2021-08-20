@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import { Box, Typography, Container } from '@material-ui/core';
 import { MyButton } from '../../components/Button'
@@ -42,8 +42,13 @@ const useStyles = makeStyles((theme) => ({
 
 const Hero = () => {
     const classes = useStyles()
-    const { menuOpen: [menuOpen] } = useContext(GlobalState)
-
+    const { menuOpen: [menuOpen], color: [, setColor] } = useContext(GlobalState)
+    useEffect(() => {
+        setColor('#fff')
+        return () => {
+            setColor('#000')
+        }
+    }, [])
     return (
         <Box >
             <Box className={classes.heroContainer}>

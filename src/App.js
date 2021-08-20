@@ -5,7 +5,7 @@ import { GlobalProvider } from './context/GlobalState'
 // import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { createMuiTheme } from '@material-ui/core/styles';
-
+import Header from './components/Header/Header'
 
 function App() {
   const myTheme = createMuiTheme({
@@ -24,7 +24,7 @@ function App() {
       ].join(','),
     }
   });
-   
+
   console.log('app is rendering');
   return (
     <GlobalProvider>

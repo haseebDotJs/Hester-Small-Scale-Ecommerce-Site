@@ -38,7 +38,7 @@ const Cart = () => {
     ]
 
     return (
-        <Box>
+        <Box style={{display: 'flex', flexDirection: 'column',minHeight: '100vh'}}>
             <Header />
             <PaddedBox>
                 <Container maxWidth="lg">
@@ -60,7 +60,9 @@ const Cart = () => {
                     </Box>
                 </Container>
             </PaddedBox>
-            <Footer />
+            <Box style={{marginTop: 'auto'}}>
+                <Footer />
+            </Box>
         </Box >
     )
 }

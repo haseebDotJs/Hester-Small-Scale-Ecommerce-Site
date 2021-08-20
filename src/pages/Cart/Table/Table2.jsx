@@ -74,7 +74,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function BasicTable() {
     const classes = useStyles();
-    const { items: { items }, update__item } = useContext(GlobalState)
+    const { items: { items }, update__item,delete__item } = useContext(GlobalState)
 
     const changeItemsQuantity = (newQuantity, itemId) => {
         console.log('new quantity is: ', newQuantity);
@@ -101,7 +101,7 @@ export default function BasicTable() {
                         {items.map((item) => (
                             <TableRow className={classes.tableRow} key={item.name}>
                                 <TableCell component="th" scope="row" className={classes.firstRow}>
-                                    <Box mr={{ sm: 5, md: 5 }} >
+                                    <Box mr={{ sm: 5, md: 5 }} onClick={() => delete__item(item)}>
                                         <Typography className={classes.delete}>×</Typography>
                                     </Box>
                                     <Box className={classes.firstColumn}>
