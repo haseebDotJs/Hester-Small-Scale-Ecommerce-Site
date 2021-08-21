@@ -5,40 +5,44 @@ import { Box, Container, Typography } from '@material-ui/core';
 import { PaddedBox } from '../../components/PaddedBox'
 import { Link } from "react-router-dom"
 import { GlobalState } from '../../context/GlobalState';
-import BasicTable from './Table/Table2'
+import BasicTable from './Table/ItemChart'
+import { makeStyles } from "@material-ui/core/styles"
 
+
+const useStyles = makeStyles(() => ({
+    checkOutContainer: {
+        display: 'flex',
+        justifyContent: 'flex-end'
+    },
+    checkOut: {
+        outline: 0,
+        border: 'none',
+        textAlign: 'center',
+        boxShadow: 'none',
+        cursor: 'pointer',
+        // marginLeft: 'auto',
+        borderRadius: 0,
+        padding: "10px 40px",
+        backgroundColor: 'rgb(39,39,39)',
+        color: '#fff',
+        "&:hover": {
+            opacity: .85,
+            boxShadow: 'none',
+        },
+
+    }
+}))
 const Cart = () => {
+    const classes = useStyles();
     console.log('cart is rendering');
     const { items: { items }, delete__item, update__item } = useContext(GlobalState)
     const [quantity, setQuantity] = useState([])
     console.log('cart items', items);
-    // create a feature in reducer to update the items
-    const changeItemsQuantity = (newQuantity, itemId) => {
-        console.log('new quantity is: ', newQuantity);
-        const extractItem = items.filter(item => item.id === itemId)
-        const itemWithNewQuantity = [{ ...extractItem[0], quantity: newQuantity }]
-        update__item(itemWithNewQuantity);
-    }
 
-    const theadData = ["item", "quantity", "Price"];
 
-    const tbodyData = [
-        {
-            id: "1",
-            items: ["John", "john@email.com", "01/01/2021"]
-        },
-        {
-            id: "2",
-            items: ["Sally", "sally@email.com", "12/24/2020"]
-        },
-        {
-            id: "3",
-            items: ["Maria", "maria@email.com", "12/01/2020"]
-        },
-    ]
 
     return (
-        <Box style={{display: 'flex', flexDirection: 'column',minHeight: '100vh'}}>
+        <Box style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
             <Header />
             <PaddedBox>
                 <Container maxWidth="lg">
@@ -55,12 +59,19 @@ const Cart = () => {
                                 </Typography>
                                 : <Box>
                                     <BasicTable />
+                                    <Box className={classes.checkOutContainer} mt={5}>
+                                        <Link to="/checkout">
+                                            <button className={classes.checkOut}>
+                                                Checkout
+                                            </button>
+                                        </Link>
+                                    </Box>
                                 </Box>
                         }
                     </Box>
                 </Container>
             </PaddedBox>
-            <Box style={{marginTop: 'auto'}}>
+            <Box style={{ marginTop: 'auto' }}>
                 <Footer />
             </Box>
         </Box >

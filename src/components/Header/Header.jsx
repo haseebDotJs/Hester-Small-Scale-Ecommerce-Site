@@ -22,6 +22,8 @@ const useStyles = makeStyles((theme) => ({
         width: '100%',
         zIndex: 1,
         padding: theme.spacing(3, 0),
+        color: color => color ? color.color : '#000'
+
     },
     box1: {
         display: 'flex',
@@ -78,13 +80,13 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const Header = () => {
-    console.log('header is rendering');
-    const classes = useStyles();
+const Header = ({color}) => {
+    console.log('header is rendering', color);
+    const classes = useStyles(color);
     const initialState = useMemo(() => ({ shop: false, ourStory: false, blog: false }), [])
     const [active, setActive] = useState(initialState)
     const { pathname } = useLocation()
-    const { modal: [showModal, setShowModal], modalContent: [, setModalContent], menuOpen: [menuOpen, setMenuOpen], items: { items },color: [color] } = useContext(GlobalState)
+    const { modal: [showModal, setShowModal], modalContent: [, setModalContent], menuOpen: [menuOpen, setMenuOpen], items: { items }} = useContext(GlobalState)
     const path = pathname.replace(/\//, "")
 
     const theme = useTheme();
@@ -129,7 +131,7 @@ const Header = () => {
             <Box>
                 {showModal && <Modal />}
             </Box>
-            <Box className={classes.headerContainer} style={{color: color}} >
+            <Box className={classes.headerContainer}  >
                 <Container maxWidth="lg">
                     <AppBar position="static" style={{ boxShadow: 'none' }} color='transparent' >
                         <Toolbar disableGutters={true} >

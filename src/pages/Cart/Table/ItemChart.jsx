@@ -74,12 +74,13 @@ const useStyles = makeStyles((theme) => ({
 
 export default function BasicTable() {
     const classes = useStyles();
-    const { items: { items }, update__item,delete__item } = useContext(GlobalState)
+    const { items: { items }, update__item, delete__item } = useContext(GlobalState)
 
     const changeItemsQuantity = (newQuantity, itemId) => {
         console.log('new quantity is: ', newQuantity);
         const extractItem = items.filter(item => item.id === itemId)
         const itemWithNewQuantity = [{ ...extractItem[0], quantity: newQuantity }]
+        // create a feature in reducer to update the items, it takes updated object and replace it with old object
         update__item(itemWithNewQuantity);
     }
     const subTotal = items.reduce((acc, item) => acc + (item.quantity * item.price), 0).toFixed(2)
@@ -99,7 +100,7 @@ export default function BasicTable() {
                     </TableHead>
                     <TableBody>
                         {items.map((item) => (
-                            <TableRow className={classes.tableRow} key={item.name}>
+                            <TableRow className={classes.tableRow} key={item.id}>
                                 <TableCell component="th" scope="row" className={classes.firstRow}>
                                     <Box mr={{ sm: 5, md: 5 }} onClick={() => delete__item(item)}>
                                         <Typography className={classes.delete}>×</Typography>
