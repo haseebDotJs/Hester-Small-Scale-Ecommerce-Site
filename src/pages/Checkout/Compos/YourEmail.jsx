@@ -90,7 +90,6 @@ const YourEmail = () => {
                             </Grid>
                         }
                     </Grid>
-
                 </Box>
                 {signUp ?
                     <Box mt={2}>

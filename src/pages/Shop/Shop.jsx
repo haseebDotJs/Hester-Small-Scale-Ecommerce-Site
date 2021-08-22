@@ -35,7 +35,6 @@ const useStyles = makeStyles(() => ({
 
 const Shop = () => {
     const classes = useStyles()
-    console.log('shop is rendering');
     useEffect(() => {
         window.scrollTo(0, 0)
     }, [])

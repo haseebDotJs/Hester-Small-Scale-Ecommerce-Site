@@ -48,13 +48,11 @@ const useStyles = makeStyles((theme) => ({
 
 const Shipping = () => {
     const classes = useStyles()
-    const { handleSubmit, register } = useForm();
+    const { handleSubmit, register,reset } = useForm();
     const { signUp: [signUp] } = useContext(GlobalState)
 
-    const onSubmit = (data, e) => {
-        console.log("form is submitting");
-        // setSignUp(true)
-        e.target.reset();
+    const onSubmit = () => {
+       reset()
     }
 
 
@@ -83,10 +81,10 @@ const Shipping = () => {
                                     </Box>
                                 </Box>
                                 <Box className={classes.field}>
-                                    <input type="text" className={classes.input} ref={register} placeholder="Address 1" required />
+                                    <input type="text" name="address_1" className={classes.input} ref={register} placeholder="Address 1" required />
                                 </Box>
                                 <Box className={classes.field}>
-                                    <input type="text" className={classes.input} ref={register} placeholder="Address 2" required />
+                                    <input type="text" name="address_2" className={classes.input} ref={register} placeholder="Address 2" required />
                                 </Box>
                                 <Box className={classes.field}>
                                     <select className={classes.input} name="Country" ref={register}>
@@ -99,13 +97,13 @@ const Shipping = () => {
                                 <Box className={classes.field}>
                                     <Grid container spacing={1}>
                                         <Grid item xs={4}>
-                                            <input type="text" className={classes.input} ref={register} placeholder="Zip Code" required />
+                                            <input type="text" name="zip_code" className={classes.input} ref={register} placeholder="Zip Code" required />
                                         </Grid>
                                         <Grid item xs={4}>
-                                            <input type="text" className={classes.input} ref={register} placeholder="City" required />
+                                            <input type="text" name="city" className={classes.input} ref={register} placeholder="City" required />
                                         </Grid>
                                         <Grid item xs={4}>
-                                            <select className={classes.input} name="State" ref={register}>
+                                            <select className={classes.input} name="state" ref={register}>
                                                 <option value="SD">SD</option>
                                                 <option value="KPK">KPK</option>
                                                 <option value="BAL">BAL</option>
@@ -115,7 +113,7 @@ const Shipping = () => {
                                     </Grid>
                                 </Box>
                                 <Box className={classes.field}>
-                                    <input type="text" className={classes.input} ref={register} placeholder="Phone Number" required />
+                                    <input type="text" name="phone_number" className={classes.input} ref={register} placeholder="Phone Number" required />
                                 </Box>
                                 {/* <Box mt={3}>
                                     <Box>

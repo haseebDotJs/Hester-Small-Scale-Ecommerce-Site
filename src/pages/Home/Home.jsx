@@ -8,7 +8,6 @@ import Footer from '../../components/Footer/Footer'
 
 const Home = () => {
 
-    console.log('home is rendering');
     return (
         <Box >
             <Hero />

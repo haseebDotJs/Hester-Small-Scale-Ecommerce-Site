@@ -8,7 +8,6 @@ import Produce from './Produce'
 import Story from './Story'
 
 const OurStory = () => {
-    console.log('our story is rendering');
     return (
         <Box>
             <Header />

@@ -15,12 +15,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Product = ({ pickle }) => {
-    const [image, setImage] = useState(pickle && pickle.image)
-    console.log('product is rendering');
+    const [image, setImage] = useState(pickle.image)
+    
     useEffect(() => {
         window.scrollTo(0, 0)
         return () => {
-            console.log('I will work on component unmount');
             setImage("")
         }
     }, [pickle])

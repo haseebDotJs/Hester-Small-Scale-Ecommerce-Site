@@ -70,8 +70,8 @@ const OrderSummary = () => {
                 </Box>
                 <Box mt={2}>
                     {items.length > 0 && items.map((item) => (
-                        <Box mb={2}>
-                            <Grid container justifyContent="space-between">
+                        <Box mb={2} key={item.id}>
+                            <Grid container >
                                 <Grid item xs={6}>
                                     <Box className={classes.imgTitContainer}>
                                         <Box className={classes.itemImage}>
@@ -108,7 +108,7 @@ const OrderSummary = () => {
                         </Box>
                     ))}
                     <Box>
-                        <Grid container justifyContent="space-between">
+                        <Grid container >
                             <Grid item xs={6}>
                                 <Typography className={classes.subTotal}>
                                     Subtotal

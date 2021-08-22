@@ -22,7 +22,6 @@ function App() {
     }
   });
 
-  console.log('app is rendering');
   return (
     <GlobalProvider>
       <ThemeProvider theme={myTheme}>

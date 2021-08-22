@@ -81,7 +81,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Header = ({ color }) => {
-    console.log('header is rendering', color);
     const classes = useStyles(color);
     const initialState = useMemo(() => ({ shop: false, ourStory: false, blog: false }), [])
     const [active, setActive] = useState(initialState)
@@ -115,7 +114,6 @@ const Header = ({ color }) => {
 
         //To make sure if a person opens hamburger in mobile version and expand the screen using console so the hamburger should be closed on 960px up automatically
         if (!matches) {
-            console.log('i am running');
             setMenuOpen(false)
         }
 

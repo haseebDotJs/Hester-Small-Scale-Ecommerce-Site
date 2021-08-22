@@ -30,7 +30,6 @@ const Hamburger = ({ menuOpen: [menuOpen, setMenuOpen], color }) => {
             setMenuOpen(false)
         }
     }
-    console.log('color', color);
     return (
         <Box className="menu-btn" ref={menuBtn} onClick={handleHamburger} >
             <Box className="menu-btn__burger" ref={menuBurger} style={{ backgroundColor: menuOpen ? '#000' : color ? color.color : "#000" }} />

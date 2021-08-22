@@ -37,7 +37,6 @@ const useStyles = makeStyles((theme) => ({
 
 const Blog = () => {
     const classes = useStyles()
-    console.log('blog is rendering');
     return (
         <Box>
             <Header />
