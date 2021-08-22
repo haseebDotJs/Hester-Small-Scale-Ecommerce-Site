@@ -74,18 +74,9 @@ const useStyles = makeStyles((theme) => ({
 
 export default function BasicTable() {
     const classes = useStyles();
-    const { items: { items }, update__item, delete__item } = useContext(GlobalState)
+    const { items: { items }, delete__item, subTotal, changeItemsQuantity } = useContext(GlobalState)
 
-    const changeItemsQuantity = (newQuantity, itemId) => {
-        console.log('new quantity is: ', newQuantity);
-        const extractItem = items.filter(item => item.id === itemId)
-        const itemWithNewQuantity = [{ ...extractItem[0], quantity: newQuantity }]
-        // create a feature in reducer to update the items, it takes updated object and replace it with old object
-        update__item(itemWithNewQuantity);
-    }
-    const subTotal = items.reduce((acc, item) => acc + (item.quantity * item.price), 0).toFixed(2)
-    console.log('subtotal', subTotal);
-    console.log("items", items);
+
     return (
         <Box>
             <TableContainer style={{ outline: 'none', border: 'none' }}>
@@ -107,7 +98,7 @@ export default function BasicTable() {
                                     </Box>
                                     <Box className={classes.firstColumn}>
                                         <Box>
-                                            <img src={item.image} className={classes.itemImage} />
+                                            <img src={item.image} className={classes.itemImage} alt="pickle" />
                                         </Box>
                                         <Box>
                                             <Typography variant="body1" className={classes.item}>{item.title}</Typography>

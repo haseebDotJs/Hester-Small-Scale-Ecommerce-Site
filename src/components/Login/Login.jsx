@@ -55,6 +55,7 @@ const Login = () => {
     const { modalContent: [, setModalContent] } = useContext(GlobalState)
 
     const onSubmit = (loginForm) => {
+        console.log('loginForm', loginForm);
         reset()
     }
     const handleCreateAccount = () => {

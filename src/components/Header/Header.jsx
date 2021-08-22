@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
     },
     logo: {
         fontSize: '2.5rem',
-        fontWeight: '600',
+        fontWeight: [theme.typography.fontWeightMedium],
         cursor: 'pointer',
         [theme.breakpoints.down('sm')]: {
             fontSize: '1.75rem'
@@ -65,7 +65,7 @@ const useStyles = makeStyles((theme) => ({
         cursor: "pointer"
     },
     cartIcon: {
-        fontWeight: "thin",
+        fontWeight: [theme.typography.fontWeightLight],
         cursor: "pointer"
     },
     mobile: {
@@ -80,13 +80,13 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const Header = ({color}) => {
+const Header = ({ color }) => {
     console.log('header is rendering', color);
     const classes = useStyles(color);
     const initialState = useMemo(() => ({ shop: false, ourStory: false, blog: false }), [])
     const [active, setActive] = useState(initialState)
     const { pathname } = useLocation()
-    const { modal: [showModal, setShowModal], modalContent: [, setModalContent], menuOpen: [menuOpen, setMenuOpen], items: { items }} = useContext(GlobalState)
+    const { modal: [showModal, setShowModal], modalContent: [, setModalContent], menuOpen: [menuOpen, setMenuOpen], items: { items } } = useContext(GlobalState)
     const path = pathname.replace(/\//, "")
 
     const theme = useTheme();
@@ -177,8 +177,8 @@ const Header = ({color}) => {
                                             Login
                                         </Typography>
                                         <Box ml={3} className={classes.cartIcon}>
-                                            <Link to="/cart">
-                                                <Badge badgeContent={totalQuantity ? totalQuantity : '0'}  >
+                                            <Link to="/cart"  className={classes.cartIcon} >
+                                                <Badge badgeContent={totalQuantity ? totalQuantity : '0'} className={classes.cartIcon}>
                                                     <ShoppingCartOutlinedIcon />
                                                 </Badge>
                                             </Link>

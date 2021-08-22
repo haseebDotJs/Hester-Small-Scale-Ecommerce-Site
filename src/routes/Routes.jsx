@@ -28,7 +28,9 @@ const MyAppRoutes = () => {
                     <Route path="/:title" element={<BlogPage />} />
                 </Route>
                 <Route path="/cart" element={<Cart />} />
-                <Route path="/checkout" element={isArrayEmpty ? <Navigate to="/cart"/> : <Checkout />} />
+                <Route path="/checkout" element={
+                    isArrayEmpty ? <Navigate to="/cart" /> :
+                        <Checkout />} />
                 <Route path="*" element={<NotFound />} />
             </Routes>
         </Box>

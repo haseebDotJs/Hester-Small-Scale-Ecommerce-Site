@@ -1,1 +1,3 @@
-export const InitialState = {items: []}
+export const InitialState = {
+    items: []
+}

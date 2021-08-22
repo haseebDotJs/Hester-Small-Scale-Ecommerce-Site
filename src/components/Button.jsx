@@ -17,11 +17,11 @@ const useStyles = makeStyles(() => ({
     }
 }));
 
-export const MyButton = ({ type, text, buttonColor, textColor, display, justifyContent, fontWeight, padding, onClick, width, opacity, cursor, disabled }) => {
+export const MyButton = ({ type, text, buttonColor, textColor, display, justifyContent, fontWeight, padding, onClick, width, cursor, disabled }) => {
     const classes = useStyles()
     return (
         <Box style={{ display: display ? display : 'flex', justifyContent: justifyContent ? justifyContent : "center" }}>
-            <button type={type ? type : "button"} style={{ backgroundColor: buttonColor, width: "100%", maxWidth: width ? width : "180px", padding: padding ? padding : "25px 40px", opacity: opacity ? opacity : 1, cursor: cursor ? cursor : 'pointer' }} className={classes.button} onClick={onClick && onClick} disabled={disabled && true} >
+            <button type={type ? type : "button"} style={{ backgroundColor: buttonColor, width: "100%", maxWidth: width ? width : "180px", padding: padding ? padding : "25px 40px", cursor: cursor ? cursor : 'pointer' }} className={classes.button} onClick={onClick && onClick} disabled={disabled && true} >
                 <Typography variant="body1" color={textColor} style={{ fontWeight: fontWeight ? fontWeight : 600 }}>
                     {text}
                 </Typography>

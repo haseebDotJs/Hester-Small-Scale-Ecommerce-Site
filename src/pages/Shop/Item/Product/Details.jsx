@@ -8,7 +8,6 @@ import { GlobalState } from '../../../../context/GlobalState'
 import Alert from '@material-ui/lab/Alert';
 import IconButton from '@material-ui/core/IconButton';
 import Collapse from '@material-ui/core/Collapse';
-import Button from '@material-ui/core/Button';
 import CloseIcon from '@material-ui/icons/Close';
 
 const useStyles = makeStyles((theme) => ({
@@ -57,7 +56,6 @@ const Details = ({ pickle }) => {
     const classes = useStyles()
     const [quantity, setQuantity] = useState(1)
     const [signup, setSignup] = useState(false)
-    const [addToCart, setAddToCart] = useState(false)
     const [open, setOpen] = useState(false)
     const { handleSubmit, register } = useForm();
     const { add__item, items: { items } } = useContext(GlobalState)
@@ -86,6 +84,7 @@ const Details = ({ pickle }) => {
             setQuantity(value)
         }
     }
+
     const itemToAdd = {
         id: pickle.id,
         title: pickle.title,
@@ -96,17 +95,16 @@ const Details = ({ pickle }) => {
         added: true
     }
 
-    // checking if item has been added before so disan;e the add to cart button
+    // checking if item has been added before so disable the add to cart button
     const itemAlreadyAdded = items.filter(item => item.id === itemToAdd.id).length < 1 ? false : true
 
     const handleAddToCart = (item) => {
         add__item(item)
-        setAddToCart(true)
     }
     return (
         <Box >
             <Box >
-                <Typography variant="h3" style={{ textTransform: 'capitalize', fontWeight: 500 }}>
+                <Typography variant="h4" style={{ textTransform: 'capitalize', fontWeight: 500 }}>
                     {pickle.title}
                 </Typography>
             </Box>
@@ -184,7 +182,9 @@ const Details = ({ pickle }) => {
                         </Box>
                     </Box>
                     <Box>
-                        <MyButton buttonColor="rgb(223,124,109)" textColor="textSecondary" text={itemAlreadyAdded ? "Added" : "Add To Cart"} display="block" cursor={itemAlreadyAdded ? "not-allowed" : 'pointer'} opacity={itemAlreadyAdded && ".75"} padding="20px 40px" width="100%" onClick={() => handleAddToCart(itemToAdd)} disabled={itemAlreadyAdded ? true : false} />
+                        <Box onClick={() => handleAddToCart(itemToAdd)}>
+                            <MyButton buttonColor="rgb(223,124,109)" textColor="textSecondary" text={itemAlreadyAdded ? "Added" : "Add To Cart"} display="block" cursor={itemAlreadyAdded ? "not-allowed" : 'pointer'} opacity={itemAlreadyAdded && ".75"} padding="20px 40px" width="100%" disabled={itemAlreadyAdded ? true : false} />
+                        </Box>
                     </Box>
                 </Box>
             }

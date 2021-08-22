@@ -40,7 +40,7 @@ const NavigationOverlay = ({ menuOpen: [menuOpen, setMenuOpen], menuItems, handl
                                 const { item } = menu
                                 const url = item.replace(/ /g, "-")
                                 return (
-                                    <Box mb={3}>
+                                    <Box mb={3} key={url}>
                                         <Link to={`/${url}`} key={url} onClick={closeMenu}>
                                             <Typography className={classes.mobileMenuItems} variant="h3" style={{ textTransform: 'capitalize' }} >
                                                 {item}

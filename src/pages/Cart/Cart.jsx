@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { useContext } from 'react'
 import Header from '../../components/Header/Header'
 import Footer from '../../components/Footer/Footer'
 import { Box, Container, Typography } from '@material-ui/core';
@@ -34,12 +34,7 @@ const useStyles = makeStyles(() => ({
 }))
 const Cart = () => {
     const classes = useStyles();
-    console.log('cart is rendering');
-    const { items: { items }, delete__item, update__item } = useContext(GlobalState)
-    const [quantity, setQuantity] = useState([])
-    console.log('cart items', items);
-
-
+    const { items: { items } } = useContext(GlobalState)
 
     return (
         <Box style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>

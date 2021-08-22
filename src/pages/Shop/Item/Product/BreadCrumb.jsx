@@ -15,7 +15,7 @@ const BreadCrumb = () => {
             {
                 pathnames.length > 0 ?
                     <Link to='/shop'>
-                        <Typography variant="body1">
+                        <Typography variant="body1"> 
                             Shop
                         </Typography>
                     </Link>

@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Product = ({ pickle }) => {
-    const [image, setImage] = useState(pickle.image)
+    const [image, setImage] = useState(pickle && pickle.image)
     console.log('product is rendering');
     useEffect(() => {
         window.scrollTo(0, 0)

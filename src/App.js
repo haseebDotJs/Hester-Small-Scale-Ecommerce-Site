@@ -1,11 +1,8 @@
 import './App.css';
 import Routes from './routes/Routes'
 import { GlobalProvider } from './context/GlobalState'
-// import { useTheme } from '@material-ui/core/styles';
-// import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { createMuiTheme } from '@material-ui/core/styles';
-import Header from './components/Header/Header'
 
 function App() {
   const myTheme = createMuiTheme({
