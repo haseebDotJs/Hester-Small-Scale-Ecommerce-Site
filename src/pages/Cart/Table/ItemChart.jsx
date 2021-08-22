@@ -28,9 +28,13 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center'
     },
     itemImage: {
-        width: '100%',
-        maxWidth: '100px',
-        minWidth: '50px'
+        width: '100px',
+        minWidth: '100px',
+        [theme.breakpoints.down('sm')]: {
+            width: '70px',
+            minWidth: '70px'
+        }
+        // minWidth: '50px'
 
     },
     tableRow: {

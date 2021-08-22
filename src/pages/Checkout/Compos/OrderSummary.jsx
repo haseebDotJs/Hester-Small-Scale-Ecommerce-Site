@@ -9,10 +9,10 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         alignItems: 'flex-start'
     },
+
     itemImage: {
-        width: '100%',
-        maxWidth: '80px',
-        minWidth: '50px',
+        width: '70px',
+        minWidth: "70px",
         border: '0.2px solid rgba(224,224,224,0.5)'
     },
     title: {
@@ -74,8 +74,8 @@ const OrderSummary = () => {
                             <Grid container >
                                 <Grid item xs={6}>
                                     <Box className={classes.imgTitContainer}>
-                                        <Box className={classes.itemImage}>
-                                            <img className={classes.itemImage} src={item.image} alt="pickle"/>
+                                        <Box >
+                                            <img className={classes.itemImage} src={item.image} alt="pickle" />
                                         </Box>
                                         <Box ml={1}>
                                             <Typography className={classes.title} >{item.title}</Typography>
