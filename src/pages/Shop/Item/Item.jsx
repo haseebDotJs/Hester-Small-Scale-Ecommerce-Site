@@ -1,4 +1,4 @@
-import { shuffle } from './Product/shuffle'
+// import { shuffle } from './Product/shuffle'
 import { Api } from '../Api'
 import Header from '../../../components/Header/Header'
 import Footer from '../../../components/Footer/Footer'
@@ -11,13 +11,11 @@ import NotFound from '../../NotFound/NotFound';
 
 
 const Item = () => {
-    console.log('item is rendering');
     const { title } = useParams()
     const originalTitle = title.replace(/-/g, " ")
     const pickle = Api.find((pickle) => pickle.title === originalTitle)
-    console.log('the current pickle is', pickle);
     // removing current item and randomly picking 5 items to put in (you might also like)
-    const randomItems = shuffle(Api.filter(pickle => pickle.title !== originalTitle).slice(0, 5))
+    const randomItems = Api.filter(pickle => pickle.title !== originalTitle).slice(0, 5)
 
     return (
         <Box>

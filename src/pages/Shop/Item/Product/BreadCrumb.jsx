@@ -9,7 +9,6 @@ const BreadCrumb = () => {
     const { pathname } = useLocation()
     // .split will provide every item before and after slash and .filter will remove empty strings or undefined items from the array
     const pathnames = pathname.split('/shop').filter(x => x)
-    console.log('pathnames', pathnames);
     return (
         <Breadcrumbs separator={<NavigateNextIcon fontSize="small" />} aria-label="breadcrumb" color="textPrimary">
             {
@@ -24,7 +23,6 @@ const BreadCrumb = () => {
             {pathnames.map((name, index) => {
                 const routeTo = pathnames.slice(0, index + 1).join('/shop')
                 const isLast = index === pathnames.length - 1
-                console.log('routeTo', routeTo);
                 return (
                     isLast ?
                         <Typography variant="body1" style={{ textTransform: "capitalize" }

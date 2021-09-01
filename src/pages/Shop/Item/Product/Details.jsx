@@ -59,7 +59,6 @@ const Details = ({ pickle }) => {
     const [open, setOpen] = useState(false)
     const { handleSubmit, register } = useForm();
     const { add__item, items: { items } } = useContext(GlobalState)
-    console.log('details component is rendering and here quantity value is', quantity);
 
     // to reset quantity and open states to default on pickle change
     useEffect(() => {
@@ -68,15 +67,11 @@ const Details = ({ pickle }) => {
     }, [pickle])
 
     const onSubmit = async () => {
-        console.log("form is submitting");
         setSignup(true)
     }
 
 
     const quantityDemand = (value, availableItems) => {
-        console.log('quantity demand ');
-        console.log('user is demanding for', value);
-        console.log('available items are', availableItems);
         if (value > availableItems) {
             setOpen(true)
         }

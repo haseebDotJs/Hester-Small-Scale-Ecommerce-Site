@@ -1,10 +1,10 @@
 import './Header.css'
-import React, { useState, useEffect, useMemo, useContext } from 'react';
+import React, { useState, useEffect, useMemo, useContext, useRef } from 'react';
 import { GlobalState } from '../../context/GlobalState'
 import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { makeStyles } from '@material-ui/core/styles';
-import { AppBar, Container, Box, Grid, InputBase, Paper } from '@material-ui/core';
+import { AppBar, Container, Box, Grid, Paper } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -66,81 +66,76 @@ const useStyles = makeStyles((theme) => ({
         fontWeight: 300,
         cursor: "pointer"
     },
-    search: {
+    searchBox: {
         position: "relative",
         display: 'flex',
         alignItems: "center",
-        borderRadius: theme.shape.borderRadius,
-        backgroundColor: "rgba(118,118,118,0.1)",
-        '&:hover': {
-            backgroundColor: "rgba(118,118,118,0.05)",
+        borderRadius: "5px",
+        height: "40px",
+        padding: "5px 0px",
+        cursor: "pointer",
+        [theme.breakpoints.down("sm")]: {
+            backgroundColor: "transparent",
         },
-        marginLeft: theme.spacing(1),
-        width: 'auto',
     },
     searchIcon: {
-        padding: theme.spacing(0, 2),
-        color: "black",
-        height: '100%',
-        position: 'absolute',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
+        color: color => color ? color.color : '#000',
+        cursor: "pointer",
+        fontSize: "1.5rem"
+        // position: 'absolute',
+        // backgroundColor: "green",
+        // [theme.breakpoints.down("sm")]: {
+        //     
+        // },
+
+    },
+    searchText: {
+        boxSizing: "border-box",
+        // minWidth: 0,
+        // maxWidth: "100px",
+        border: "none",
+        background: "none",
+        padding: "0 5px 0 0",
+        color: color => color ? color.color : '#000',
+        transition: "all 0.4s",
+        "&::placeholder": {
+            color: color => color ? color.color : '#000',
+        },
         [theme.breakpoints.down("sm")]: {
-            fontSize: "1rem"
+            width: "0",
         }
     },
-    inputRoot: {
-        color: 'inherit',
-    },
-    inputInput: {
-        cursor: "pointer",
-        color: "black",
-        padding: theme.spacing(1, 1, 1, 0),
-        // vertical padding + font size from searchIcon
-        paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-        transition: theme.transitions.create('width'),
-        width: '12ch',
-        '&:focus': {
-            width: '20ch',
-        },
-        [theme.breakpoints.down('sm')]: {
-            width: '100%',
-            boxSizing: "border-box"
-        },
-    },
-    cartIcon: {
-        cursor: "pointer",
-        fontSize: "40px",
-        width: "40px"
-    },
+
     searchResultContainer: {
         position: 'absolute',
         width: '100%',
-        marginTop: '10px',
-        // [theme.breakpoints.down('sm')]: {
-        //     position: 'fixed',
-        //     zIndex: 1,
-        //     /* Sit on top */
-        //     left: 0,
-        //     right: 0
-        // }
+        top: "50px",
+        [theme.breakpoints.down('sm')]: {
+            position: 'fixed',
+            zIndex: 1,
+            /* Sit on top */
+            left: 0,
+            right: 0,
+            top: "90px"
+        }
     },
     searchResult: {
         display: 'flex',
         alignItems: 'center',
-        borderBottom: '1px solid gray',
+        borderBottom: '0.5px solid gray',
         padding: theme.spacing(1)
     },
     searchResultImage: {
-        width: "40px",
+        width: "60px",
         minWidth: "40px"
     },
     searchResultTitle: {
-        fontSize: '.7rem',
-        [theme.breakpoints.down('sm')]: {
-            fontSize: '.5rem'
-        }
+        fontSize: '.8rem',
+    },
+    cartIcon: {
+        cursor: "pointer",
+        fontSize: "40px",
+        // width: "40px"
     },
     mobile: {
         [theme.breakpoints.up('md')]: {
@@ -157,13 +152,14 @@ const useStyles = makeStyles((theme) => ({
 
 const Header = ({ color }) => {
     const classes = useStyles(color);
+    const search = useRef(null);
     const initialState = useMemo(() => ({ shop: false, ourStory: false, blog: false }), [])
     const [active, setActive] = useState(initialState)
+    const [searchOpen, setSearchOpen] = useState(false)
     const [searchInput, setSearchInput] = useState("")
     const { pathname } = useLocation()
     const { modal: [showModal, setShowModal], modalContent: [, setModalContent], menuOpen: [menuOpen, setMenuOpen], items: { items } } = useContext(GlobalState)
     const path = pathname.replace(/\//, "")
-
     const theme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.down('sm'));
 
@@ -176,13 +172,11 @@ const Header = ({ color }) => {
     // const box1 = useRef()
     // const box3 = useRef()
 
-    console.log('title', items);
     // searching for products according to keywords in search input
     const filteredProducts = searchInput.length > 0 ? Api.filter(item => {
         return item.title.toLowerCase().indexOf(searchInput.toLowerCase()) !== -1;
     }) : []
 
-    console.log('filteredProducts', filteredProducts);
 
     useEffect(() => {
         if (path.includes('shop')) {
@@ -210,6 +204,25 @@ const Header = ({ color }) => {
     const emptySearchInput = () => {
         setSearchInput("")
     }
+    useEffect(() => {
+        if (!matches) {
+            search.current.style.width = `auto`
+        }
+        else {
+            search.current.style.width = 0
+        }
+    }, [matches])
+    const handleSearchClick = () => {
+        if (!searchOpen) {
+            setSearchOpen(true)
+            search.current.style.width = `${window.innerWidth / 5}px`
+        }
+        else {
+            setSearchOpen(false)
+            search.current.style.width = "0"
+            setSearchInput("")
+        }
+    };
     return (
         <Box>
             <Box>
@@ -219,7 +232,7 @@ const Header = ({ color }) => {
                 <Container maxWidth="lg">
                     <AppBar position="static" style={{ boxShadow: 'none' }} color='transparent' >
                         <Toolbar disableGutters={true} >
-                            <Grid container alignItems="center">
+                            <Grid container alignItems="center" >
                                 <Grid item xs={4}>
                                     <Box className={cx(classes.box1, classes.mobile)}>
                                         <Box>
@@ -257,51 +270,54 @@ const Header = ({ color }) => {
                                 </Grid>
                                 <Grid item xs={4}>
                                     <Box className={classes.box3}>
-                                        <div className={classes.search}>
-                                            <div className={classes.searchIcon}>
-                                                <SearchIcon />
-                                            </div>
-                                            <InputBase
+                                        <div className={classes.searchBox}>
+                                            <input
                                                 type="text"
                                                 name="search"
                                                 autoComplete="off"
                                                 placeholder="Search…"
-                                                classes={{
-                                                    root: classes.inputRoot,
-                                                    input: classes.inputInput,
-                                                }}
-                                                inputProps={{ 'aria-label': 'search' }}
+                                                className={classes.searchText}
+                                                id="search"
                                                 value={searchInput}
                                                 onChange={(e) => setSearchInput(e.target.value)}
+                                                ref={search}
+                                                disabled={(matches && !searchOpen) && true}
                                             />
+                                            <Box mt={1} onClick={matches ? handleSearchClick : undefined}>
+                                                <label htmlFor="search">
+                                                    <SearchIcon className={classes.searchIcon} />
+                                                </label>
+                                            </Box>
                                             <div className={classes.searchResultContainer}>
                                                 {searchInput.length > 0 &&
-                                                    < Paper >
-                                                        {
-                                                            filteredProducts.length < 1 ?
-                                                                <Box className={classes.searchResult}>
-                                                                    <Typography variant="body1">No results!</Typography>
-                                                                </Box>
-                                                                :
-                                                                filteredProducts.map(item => {
-                                                                    const url = item.title.replace(/ /g, "-")
-                                                                    return (
-                                                                        <Link to={`/shop/${url}`} onClick={emptySearchInput}>
-                                                                            <Box className={classes.searchResult} key={item.id}>
-                                                                                <div>
-                                                                                    <img className={classes.searchResultImage} src={item.image} alt="pickle" />
-                                                                                </div>
-                                                                                <div>
-                                                                                    <Typography className={classes.searchResultTitle}>
-                                                                                        {item.title}
-                                                                                    </Typography>
-                                                                                </div>
-                                                                            </Box>
-                                                                        </Link>
-                                                                    )
-                                                                })
-                                                        }
-                                                    </Paper>
+                                                    <Box>
+                                                        < Paper variant="outlined">
+                                                            {
+                                                                filteredProducts.length < 1 ?
+                                                                    <Box className={classes.searchResult}>
+                                                                        <Typography variant="body1">No results!</Typography>
+                                                                    </Box>
+                                                                    :
+                                                                    filteredProducts.map(item => {
+                                                                        const url = item.title.replace(/ /g, "-")
+                                                                        return (
+                                                                            <Link to={`/shop/${url}`} onClick={emptySearchInput} key={item.title}>
+                                                                                <Box className={classes.searchResult} key={item.id}>
+                                                                                    <div>
+                                                                                        <img className={classes.searchResultImage} src={item.image} alt="pickle" />
+                                                                                    </div>
+                                                                                    <div>
+                                                                                        <Typography className={classes.searchResultTitle}>
+                                                                                            {item.title}
+                                                                                        </Typography>
+                                                                                    </div>
+                                                                                </Box>
+                                                                            </Link>
+                                                                        )
+                                                                    })
+                                                            }
+                                                        </Paper>
+                                                    </Box>
                                                 }
                                             </div>
                                         </div>
@@ -311,7 +327,7 @@ const Header = ({ color }) => {
                                             </Typography>
                                         </Box>
                                         <Box ml={3} className={classes.desktop}>
-                                            <Link to="/cart" className={cx(classes.cartIcon, classes.title)} >
+                                            <Link to="/cart" className={cx(classes.cartIcon)} >
                                                 <Badge badgeContent={totalQuantity ? totalQuantity : '0'} >
                                                     <ShoppingCartOutlinedIcon />
                                                 </Badge>
