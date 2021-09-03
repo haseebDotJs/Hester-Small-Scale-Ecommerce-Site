@@ -1,4 +1,4 @@
-# LIVE: hester.surge.sh
+# LIVE: http://hester.surge.sh
 # Description
 An front end ecommerce store to look for pickle of your choice
 # Features
